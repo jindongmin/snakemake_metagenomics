@@ -1,2 +1,2 @@
 # snakemake_metagenomics
-Input SRA IDs, output biom tables
+Input SRA IDs, output microbiome features
