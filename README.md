@@ -8,4 +8,7 @@ http://ftp.ebi.ac.uk/pub/databases/metagenomics/mgnify_genomes/human-gut/v2.0/kr
 
 mamba install bracken
 
+kraken2 --version
+Kraken version 2.1.2
+
 
