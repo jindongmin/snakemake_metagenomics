@@ -11,4 +11,5 @@ mamba install bracken
 kraken2 --version
 Kraken version 2.1.2
 
-
+fasterq-dump -V
+"fasterq-dump" version 3.0.0
