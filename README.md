@@ -13,3 +13,7 @@ Kraken version 2.1.2
 
 fasterq-dump -V
 "fasterq-dump" version 3.0.0
+
+To do:
+add shadow directive
+https://snakemake.readthedocs.io/en/stable/project_info/faq.html#how-can-i-make-use-of-node-local-storage-when-running-cluster-jobs
