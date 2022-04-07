@@ -12,7 +12,7 @@ kraken2 --version
 Kraken version 2.1.2
 
 fasterq-dump -V
-"fasterq-dump" version 3.0.0
+"fasterq-dump" version 2.11.0
 
 To do:
 add shadow directive
