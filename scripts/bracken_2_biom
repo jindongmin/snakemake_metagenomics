@@ -1,0 +1,17 @@
+#!/bin/bash
+data_dir=$1
+output_dir=$2
+# sed commands go here
+# select column: species name and count
+for i in `ls $(data_dir)/*output.txt`; 
+do 
+    cut -f 1,6 $i > ${i/output.txt/abundance.txt}; 
+done
+
+#Change the second column name into SRR accession number
+for f in `ls $(data_dir)/*abundance.txt`; 
+do 
+    sed -i -e "1s@new_est_reads@${f/.abundance.txt/}@g" "$f"; 
+done
+
+abundance_to_biom.py --data-dir $data_dir --output_dir $output_dir
