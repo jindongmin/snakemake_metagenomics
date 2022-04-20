@@ -11,25 +11,17 @@ rule all:
 
 rule fasterq:
     output:
-        fq1 = temp("fq/{sample}_1.fastq"),
-        fq2 = temp("fq/{sample}_2.fastq")
+        fq_all = temp("fq/{sample}/{sample}.sra"),
+        fq1 = temp("fq/{sample}_1.fastq.gz"),
+        fq2 = temp("fq/{sample}_2.fastq.gz")
     threads: 12
     shell:
         "prefetch {wildcards.sample} --output-directory fq/"
         "&& fasterq-dump {wildcards.sample} -e {threads} -S -O fq/"
         "&& cache-mgr --clear >/dev/null 2>&1"
-
-rule gzip:
-    input:
-        fq1 = "fq/{sample}_1.fastq",                                         
-        fq2 = "fq/{sample}_2.fastq"
-    output:
-        fq1_gz = temp("fq/{sample}_1.fastq.gz"),
-        fq2_gz = temp("fq/{sample}_2.fastq.gz")
-    shell:
-        "gzip fq/{wildcards.sample}_1.fastq"                                 
+        "&& gzip fq/{wildcards.sample}_1.fastq" 
         "&& gzip fq/{wildcards.sample}_2.fastq"
- 
+
 rule fastp:
     input:
         fq1 = "fq/{sample}_1.fastq.gz",
