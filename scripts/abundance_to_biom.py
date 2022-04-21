@@ -6,7 +6,7 @@ import argparse
 import biom
 import glob
 from biom.util import biom_open
-import pandas
+import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data-dir', help='Data directory of braken outputs',
@@ -22,8 +22,9 @@ def pd2biom(x):
     feature_ids = x['name']
     sample_id = x.columns[-1]
     counts = x[sample_id].values
+    counts = counts.reshape(-1, 1)
     return biom.Table(counts, feature_ids, [sample_id])
 biom_tables = list(map(pd2biom, bracken_abunds))
 table = biom_tables[0].concat(biom_tables[1:])
-with biom_open(args.output_biom, 'wb') as f:
+with biom_open(args.output_biom, 'w') as f:
     table.to_hdf5(f, 'combined')
