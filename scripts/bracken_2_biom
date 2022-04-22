@@ -10,9 +10,9 @@ do
 done
 
 #Change the second column name into SRR accession number
-for f in `ls $data_dir/*abundance.txt`; 
+for f in `ls $data_dir | grep abundance.txt`; 
 do 
-    sed -i -e "1s@new_est_reads@${f/.abundance.txt/}@g" "$f"; 
+    sed -i -e "1s@new_est_reads@${f/.abundance.txt/}@g" "$data_dir/$f"; 
 done
 
 abundance_to_biom.py --data-dir $data_dir --output-biom $output_dir
